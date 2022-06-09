@@ -11,21 +11,21 @@ contract Estudiante{
     int private nota;
     bool private _aprobado;
     int _promedio;
+    string[] private materias;
 
-    constructor(string memory nombre_, string memory apellido_, string memory curso_, string memory docente_){
+    constructor(string memory nombre_, string memory apellido_, string memory curso_){
         _nombre = nombre_;
         _apellido = apellido_;
         _curso = curso_;
-        _docente = docente_;
+        //_docente = docente_;
         _docente = msg.sender;
-        nota = _docente;
+        
     }
     function apellido() public view returns (string memory){
         return _apellido;
     }
     function nombre_completo() public view returns (string memory){
         return _nombre;
-        return _apellido;
     }
     function curso() public view returns (string memory){
         return _curso;
@@ -33,6 +33,7 @@ contract Estudiante{
     function set_nota_materias(string memory materia, uint t) public{
         require(msg.sender == _docente, "Solo el docente puede setear notas");
         _notas_materias[materia] = t;
+        materias.push(materia);
     }
     function get_nota(string memory materia_) public view returns (uint){
         return _notas_materias[materia_];
@@ -46,13 +47,24 @@ contract Estudiante{
             return true;
         }
     }
-    function promedio(int nota_) public view returns (uint){
+    function promedio() public view returns (uint){
         uint notas;
         uint division = 0;
-        for (int i; i<=_notas_materias; i++){
-            notas += _notas_materias[i];
+        uint long = materias.length;
+        for (uint i; i<= long; i++){
+            notas += _notas_materias[materias[i]];
             division++;
         }
-        return notas/division;
+        return notas/long;
     }
 }
+
+//_notas_materias["lengua"] = 9;
+//_notas_materias["mat"] = 3;
+
+//{
+//    "lengua": 9,
+//    "mat": 3
+//}
+
+//_notas_materias["lengua"] < 9 

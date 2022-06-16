@@ -20,7 +20,7 @@
 pragma solidity ^0.8.12;
 
 contract Estudiante{
-
+        //Opcional a. Lo que haria seria hacer un array de mappings que permita el ingreso de las notas de los 4 biemestres.
     string private _nombre;
     address private _docente;
     string private _curso;

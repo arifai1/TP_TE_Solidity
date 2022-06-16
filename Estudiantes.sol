@@ -85,10 +85,6 @@ contract Estudiante{
 
 //_notas_materias["lengua"] < 9 
 
-
-
-
-
 // for (uint i=0; i< materias.length; i++){
 //                 if (materia != materias[i]){
 //                      materias.push(materia);

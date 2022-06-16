@@ -1,26 +1,8 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.12;
 
 contract Estudiante{
-        //Opcional a. Lo que haria seria hacer un array de mappings que permita el ingreso de las notas de los 4 biemestres.
+    //Opcional a. Lo que haria seria hacer un array de mappings que permita el ingreso de las notas de los 4 biemestres.
     string private _nombre;
     address private _docente;
     string private _curso;
@@ -38,6 +20,16 @@ contract Estudiante{
         _docente = msg.sender;
         
     }
+    // Opcional b. Para poder hacer el opcional b se me ocurre que podríamos crear un array de tipo 
+    // address en el que pongamos como primer item al msg.sender. Luego crearía una funcion 
+    // set_otrosprofesores para que el owner pueda agregar nuevos docentes a la lista creada previamente 
+    // Esto lo haria ingresando las address de cada profesor. Luego 
+    // haría un for en el que recorra todo el array y un if para ver si ese docente está en ese array o no.
+    // El if me va a devolver un True o False.
+    // Lo haria con el require(funcion(msg.sender)) y así poder ver si esta permitido que ingrese las notas.
+    
+    //_docentes_permitidos = [msg.sender]
+
      function apellido() public view returns (string memory){
          return _apellido;
      }
@@ -59,11 +51,11 @@ contract Estudiante{
         materias.push(materia);
     }
 
-    function get_nota(string memory materia_) public view returns (uint){
+    function nota_materia(string memory materia_) public view returns (uint){
         return _notas_materias[materia_];
     }
 
-    function aprobado(string memory materia_) public view returns (bool){
+    function aprobo(string memory materia_) public view returns (bool){
         if(_notas_materias[materia_]<60){
             return false;
         }
